@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+.active hr {
+  @apply block;
+}
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
+
+@utility grid-cols-auto {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+  --color-hover: var(--hover);
+  --color-gold: var(--gold);
+}
+
+:root {
+  --primary: #5f6fff;
+  --background: #fffaf0;
+  --text: #2d2a26;
+  --border: #eadfcb;
+  --accent: #d94f70;
+  --secondary: #f8ebdd;
+  --hover: #1b422c;
+  --gold: #d4af37;
+}

@@ -1,0 +1,19 @@
+import { createContext, useContext } from "react";
+import { doctors } from "../assets/assets_frontend/assets";
+
+interface AppContextType {
+  doctors: typeof doctors;
+  currencySymbol: string;
+}
+
+export const AppContext = createContext<AppContextType | undefined>(undefined);
+
+export const useAppContext = () => {
+  const context = useContext(AppContext);
+
+  if (!context) {
+    throw new Error("useAppContext must be used within AppProvider");
+  }
+
+  return context;
+};
