@@ -1,8 +1,8 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 interface relProps {
-  docId: string;
+  docId: string | undefined;
   speciality: string;
 }
 
@@ -10,16 +10,12 @@ export default function RelatedDoctors({ docId, speciality }: relProps) {
   const navigate = useNavigate();
   const { doctors } = useAppContext();
 
-  const [relDoc, setRelDoc] = useState<typeof doctors>([]);
+  const relDoc = useMemo(() => {
+    if (!speciality) return [];
 
-  useEffect(() => {
-    if (speciality) {
-      setRelDoc(
-        doctors.filter(
-          (doc) => doc.speciality === speciality && doc._id !== docId,
-        ),
-      );
-    }
+    return doctors.filter(
+      (doc) => doc.speciality === speciality && doc._id !== docId,
+    );
   }, [doctors, speciality, docId]);
 
   return (

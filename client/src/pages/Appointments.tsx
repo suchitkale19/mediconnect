@@ -57,63 +57,6 @@ export default function Appointments() {
     return allSlots;
   }, [doctorInfo]);
 
-  // const getAvailableSlots = () => {
-  //   const allSlots: Slot[][] = [];
-
-  //   // Current date
-  //   const today = new Date();
-
-  //   for (let i = 0; i <= 7; i++) {
-  //     // Current day
-  //     const currentDate = new Date(today);
-  //     currentDate.setDate(today.getDate() + i);
-
-  //     // End time (9:00 PM)
-  //     const endTime = new Date(today);
-  //     endTime.setDate(today.getDate() + i);
-  //     endTime.setHours(21, 0, 0, 0);
-
-  //     // Starting time
-  //     if (today.getDate() === currentDate.getDate()) {
-  //       currentDate.setHours(
-  //         currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10,
-  //       );
-  //       currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0);
-  //     } else {
-  //       currentDate.setHours(10);
-  //       currentDate.setMinutes(0);
-  //     }
-
-  //     // Slots for one day
-  //     const timeSlots: Slot[] = [];
-
-  //     while (currentDate < endTime) {
-  //       const formattedTime = currentDate.toLocaleTimeString([], {
-  //         hour: "2-digit",
-  //         minute: "2-digit",
-  //       });
-
-  //       timeSlots.push({
-  //         datetime: new Date(currentDate),
-  //         time: formattedTime,
-  //       });
-
-  //       // Move ahead 30 minutes
-  //       currentDate.setMinutes(currentDate.getMinutes() + 30);
-  //     }
-
-  //     allSlots.push(timeSlots);
-  //   }
-
-  //   setDocSlots(allSlots);
-  // };
-
-  // useEffect(() => {
-  //   if (doctorInfo) {
-  //     getAvailableSlots();
-  //   }
-  // }, [doctorInfo]);
-
   if (!doctorInfo) {
     return <p>Doctor not found</p>;
   }
@@ -209,7 +152,9 @@ export default function Appointments() {
         </div>
 
         {/* listing related doctors */}
-        <RelatedDoctors docId={docId} speciality={doctorInfo.speciality} />
+        {doctorInfo && (
+          <RelatedDoctors docId={docId} speciality={doctorInfo.speciality} />
+        )}
       </div>
     )
   );
