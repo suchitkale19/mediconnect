@@ -1,10 +1,11 @@
 import { useState, type ReactNode } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { assets } from "../assets/assets_frontend/assets";
 
 export default function Navbar() {
   const navOptions = ["Home", "Doctors", "About", "Contact"];
   const navigate = useNavigate();
-  // const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [token, setToken] = useState(true);
 
   return (
@@ -72,6 +73,39 @@ export default function Navbar() {
             Create Account
           </button>
         )}
+        <img
+          onClick={() => setShowMenu(true)}
+          className="w-6 md:hidden"
+          src={assets.menu_icon}
+          alt=""
+        />
+        {/* mobile menu */}
+        <div
+          className={`${showMenu ? "fixed w-full" : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}
+        >
+          <div className="flex items-center justify-between px-5 py-6">
+            <img className="w-36" src={assets.logo} alt="" />
+            <img
+              className="w-7"
+              onClick={() => setShowMenu(false)}
+              src={assets.cross_icon}
+              alt=""
+            />
+          </div>
+          <ul className="flex flex-col items-center gap-2  mt-5 px-5 text-lg font-medium">
+            {navOptions.map((el, index): ReactNode => {
+              return (
+                <NavLink
+                  key={index}
+                  to={`/${el === "Home" ? "" : el.toLowerCase()}`}
+                  onClick={() => setShowMenu(false)}
+                >
+                  <p className="px-4 py-2 rounded inline-block">{el}</p>
+                </NavLink>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );

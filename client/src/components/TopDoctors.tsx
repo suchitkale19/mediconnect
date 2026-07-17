@@ -21,7 +21,7 @@ export default function TopDoctors() {
             >
               <img className="bg-blue-50" src={doc.image} alt="" />
               <div className="p-4">
-                <div className="flex items-center gap-2 text-sm text-center text-greeen-500">
+                <div className="flex items-center gap-2 text-sm text-center text-green-500">
                   <p className="w-2 h-2 rounded-full bg-green-500"></p>
                   <p>Available</p>
                 </div>
