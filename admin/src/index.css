@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+}
+
+:root {
+  --primary: #5f6fff;
+}
